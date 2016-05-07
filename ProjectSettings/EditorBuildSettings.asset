@@ -7,5 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/PointCloudTools/Examples/Mobile/scene_mobile_heavy01.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/PointCloudTools/Examples/PushVertices/scene_MeshPointPush.unity
+  - enabled: 1
+    path: Assets/Scenes/TWA_push_example_1.unity
