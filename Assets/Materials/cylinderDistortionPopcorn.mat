@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: cylinderDistortion
-  m_Shader: {fileID: 4800000, guid: 4cc9be10c9764481c83c941585f75968, type: 3}
+  m_Name: cylinderDistortionPopcorn
+  m_Shader: {fileID: 4800000, guid: ccc2832ad838e43668438f93ab1f0715, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2000
@@ -129,25 +129,21 @@ Material:
         second: 0
       data:
         first:
-          name: _LightLimit
-        second: 5
-      data:
-        first:
           name: _Limit
-        second: 6
+        second: 10
       data:
         first:
           name: _Amount
-        second: -2
+        second: 0.3
       data:
         first:
           name: _CastLength
         second: 10000
-    m_Colors:
       data:
         first:
-          name: _LightPos
-        second: {r: 0, g: 0, b: 0, a: 0}
+          name: _NoiseScale
+        second: 1
+    m_Colors:
       data:
         first:
           name: _EmissionColor

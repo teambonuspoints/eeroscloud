@@ -14,9 +14,10 @@
             Renderer
             Material
             Resources
-            Transform]
-           ParticleFunctions
-           ))
+            Transform
+            Color
+            Gizmos]
+           ParticleFunctions))
 
 (defmacro set-with! [obj [sym & props] & body]
   `(let [obj# ~obj

@@ -1,4 +1,4 @@
-Shader "vertexColorCylinderDisplace1" {
+Shader "vertexColorCylinderDisplacePopcorn" {
 
 	Properties {
 		//_LightPos("Light Position", Vector) = (0,0,0,0)
@@ -8,6 +8,7 @@ Shader "vertexColorCylinderDisplace1" {
 		_Dir("Displacer Direction",Vector) = (0,0,1,0)
 		_Limit("Bulge Threshold", Float) = 5
 		_Amount("Extrusion Amount", Float) = 3
+		_NoiseScale("Noise Scale", Float) = 1
 	} 
 
 	SubShader {
@@ -21,6 +22,7 @@ Shader "vertexColorCylinderDisplace1" {
 
 			float _Amount;
 			float _Limit;
+			float _NoiseScale;
 			float _CastLength;
 			//float _LightLimit;
 			float3 _Pos;
@@ -49,6 +51,27 @@ Shader "vertexColorCylinderDisplace1" {
 
 				//o.pos = mul(UNITY_MATRIX_P, pos);
 				return mul(UNITY_MATRIX_P, pos);
+			}
+
+			float ghash(float2 p){
+				float h = dot(p, float2(127.1, 311.7));
+				return frac(sin(h) * 43758.545312);
+			}
+
+			float noise(float2 p){
+				float i = floor(p); // will it work?
+				float f = frac(p); // will it work?
+				float2 u = f * f * ((f * 2) - 3);
+				float x = u.x;
+				float y = u.y;
+				float h1 = ghash(float2(0, 0) + float2(i, i));
+				float h2 = ghash(float2(1, 0) + float2(i, i));
+				float m1 = lerp(h1, h2, x);
+				float h3 = ghash(float2(0, 1) + float2(i, i));
+				float h4 = ghash(float2(1, 1) + float2(i, i));
+				float m2 = lerp(h3, h4, x);
+				float m3 = lerp(m1, m2, y);
+				return y * 2 - 1;
 			}
 
 			float capsuleLineDist(float3 p, float3 a, float3 b, float r){
@@ -92,10 +115,17 @@ Shader "vertexColorCylinderDisplace1" {
 				float3 dir = normalize(nrm);
 				float bulgedFctr2 = bulgedFctr * _Amount;
 				
+				//float4 vtWorld = vWorld * (_Time.x);
+
 				float3 something = 
 					mul(_World2Object,
 						mul(_Object2World, v.xyz)
-						+ dir * bulgedFctr2);
+						+ dir * bulgedFctr2)
+						//+ (float3(
+						//	noise(vtWorld.xy),
+						//	noise(vtWorld.yz),
+						//	noise(vtWorld.zx)))/10
+						;
 				v.xyz = something;
 				o.pos = mul(UNITY_MATRIX_MVP, v);
 
