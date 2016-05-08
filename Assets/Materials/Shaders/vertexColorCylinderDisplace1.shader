@@ -8,6 +8,10 @@ Shader "vertexColorCylinderDisplace1" {
 		_Dir("Displacer Direction",Vector) = (0,0,1,0)
 		_Limit("Bulge Threshold", Float) = 5
 		_Amount("Extrusion Amount", Float) = 3
+		//_Switcheroo("_Switcheroo", Bool) = false
+		//fuck it
+		_Switcheroo("Switcheroo", Int) = 1
+		_CarpetThreshold("Carpet Threshold", Float) = 0.1 
 	} 
 
 	SubShader {
@@ -22,10 +26,13 @@ Shader "vertexColorCylinderDisplace1" {
 			float _Amount;
 			float _Limit;
 			float _CastLength;
+			float _CarpetThreshold;
 			//float _LightLimit;
 			float3 _Pos;
 			float3 _Dir;
 			//float3 _LightPos;
+
+			int _Switcheroo;
 
 			static const float PI = 3.14159265f;
 
@@ -34,6 +41,13 @@ Shader "vertexColorCylinderDisplace1" {
 				half3 worldNormal : TEXCOORD0;
 				float4 pos : SV_POSITION;
 				float size : PSIZE0;
+			};
+
+			struct bologna
+			{
+				fixed4 color: COLOR;
+				half3 worldNormal: TEXCOORD0;
+				float4 pos: SV_POSITION;
 			};
 
 			float4 gaeel(float4 v, float3 normal){
@@ -102,7 +116,7 @@ Shader "vertexColorCylinderDisplace1" {
 				return o;
 			}
 
-			v2f vert(float4 v : POSITION, float3 normal : NORMAL) {
+			bologna vert(float4 v : POSITION, float3 normal : NORMAL, fixed4 color : COLOR) {
 				v2f o;
 
 				//o.pos = {0,0,0,0}; // gaeel(v, normal);
@@ -114,18 +128,55 @@ Shader "vertexColorCylinderDisplace1" {
 
 				o.worldNormal = UnityObjectToWorldNormal(normal);
 
-				return o;
+				// not winning the turing award with this one
+				bologna b;
+				b.pos = o.pos;
+				b.color = color;
+				b.worldNormal = o.worldNormal;
+
+				return b;
 			}
 
 
-			float4 frag(v2f i) : COLOR {
+			float4 frag(bologna b) : COLOR {
 
 				fixed4 c = 0;
 				// normal is a 3D vector with xyz components; in -1..1
 				// range. To display it as color, bring the range into 0..1
 				// and put into red, green, blue components
 
-				c.rgb = i.worldNormal*0.5+0.5;
+				//c.rgb = i.worldNormal*0.5+0.5;
+				//if(_Switcheroo == 1){
+				//	c.rgb = b.worldNormal*0.5+0.5;
+				//}else{
+				//	c = b.color;
+				//}
+
+				//c.rgb = (b.worldNormal*0.5+0.5);
+				//c.r = c.rgb * float3(1, 0, 0);
+				//c.gb = b.color.gb;
+
+				//c.rgb = b.color;
+				//c.r = max(c.r, (b.worldNormal*0.5+0.5).x );
+
+				//c.rgb = (b.worldNormal*0.5+0.5);
+
+				//c.r = max(c.r, b.color.x );
+
+				fixed4 sceneColor = b.color;
+				fixed4 normColor;
+				normColor.xyz = b.worldNormal*0.5+0.5;
+
+				//float fluppum = sceneColor.r - (sceneColor.g + sceneColor.b);
+				//float fluppum = sceneColor.r - (sceneColor.g + sceneColor.b)/2;
+				float fluppum = sceneColor.r / ((sceneColor.g + sceneColor.b)/2);
+
+				if(fluppum > _CarpetThreshold){
+					c = sceneColor * 2;
+				}else{
+					c = normColor;
+				}
+
 				return c;
 
 			}
