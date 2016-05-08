@@ -1,7 +1,7 @@
 // some parts of the source: http://forum.unity3d.com/threads/5785-shader-SetGlobalVector?p=43611&viewfull=1#post43611
 // modified by http://unitycoder.com/blog/
 
-Shader "UnityCoder/VertexColorDisplacePseudoLight2"
+Shader "Distorter/VertexColorDisplacePseudoLight2"
 {
     Properties {
 	  	_LightPos("LightPosition", Vector) = (0,0,0,0)

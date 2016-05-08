@@ -2,12 +2,12 @@
 // *** DOESNT WORK WITH DX11 MODE ***
 // http://unitycoder.com
 
-Shader "UnityCoder/PointCloudMeshColorSize2"
+Shader "Distorter/PointCloudMeshColorSize2"
 {
 
     Properties 
     {
-        _PointSize("PointSize", Float) = 1
+        _PointSize("PointSize", Float) = 100
     }
 
 	SubShader
@@ -15,8 +15,8 @@ Shader "UnityCoder/PointCloudMeshColorSize2"
 		Tags { "Queue"="Geometry"}
 		Blend SrcAlpha OneMinusSrcAlpha     // Alpha blending 
 		Lighting Off
-		Cull Off
-		ZWrite Off
+//		Cull Off
+//		ZWrite Off
 		Fog { Mode Off }
 		
 		Pass
