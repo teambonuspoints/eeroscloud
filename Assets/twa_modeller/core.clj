@@ -5,13 +5,24 @@
         clojure.repl)
   (:require [arcadia.introspection :as intro])
   (:import [UnityEngine
+            GameObject
+            Component
             Vector3
             ParticleSystem
             MeshRenderer
             Renderer
-            Material]
+            Material
+            Transform]
            ParticleFunctions
            ))
+
+(defmacro set-with! [obj [sym & props] & body]
+  `(let [obj# ~obj
+         ~sym (.. obj# ~@props)]
+     (set! (.. obj# ~@props) (do ~@body))))
+
+(defn mempr [& args]
+  (pprint (apply intro/members args)))
 
 ;; ============================================================
 ;; stupid utils
