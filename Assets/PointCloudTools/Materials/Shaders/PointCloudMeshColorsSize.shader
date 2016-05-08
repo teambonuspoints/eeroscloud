@@ -7,7 +7,7 @@ Shader "UnityCoder/PointCloudMeshColorSize"
 
     Properties 
     {
-        _PointSize("PointSize", Float) = 1
+        _PointSize("PointSize", Float) = 100
     }
 
 	SubShader
