@@ -10,8 +10,10 @@
             Vector3
             ParticleSystem
             MeshRenderer
+            MeshFilter
             Renderer
             Material
+            Resources
             Transform]
            ParticleFunctions
            ))
