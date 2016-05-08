@@ -143,6 +143,10 @@ Material:
         second: 0
       data:
         first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
           name: _LightLimit
         second: 15
       data:
@@ -153,10 +157,6 @@ Material:
         first:
           name: _Amount
         second: 9
-      data:
-        first:
-          name: _InvFade
-        second: 1
       data:
         first:
           name: _Invert
@@ -185,7 +185,7 @@ Material:
       data:
         first:
           name: _Pos
-        second: {r: -20.425117, g: -0.7062988, b: -5.6303186, a: 1}
+        second: {r: -11.608728, g: -0.11634874, b: 52.298782, a: 1}
       data:
         first:
           name: _TintColor
