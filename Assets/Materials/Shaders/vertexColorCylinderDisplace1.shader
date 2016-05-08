@@ -2,10 +2,11 @@ Shader "vertexColorCylinderDisplace1" {
 
 	Properties {
 		//_LightPos("Light Position", Vector) = (0,0,0,0)
-		_LightLimit("Bulge Threshold", Float) = 5
+		//_LightLimit("Bulge Threshold", Float) = 5
+		_CastLength("Cast Length", Float) = 1000
 		_Pos("Displacer Position", Vector) = (1,1,1,1)
 		_Dir("Displacer Direction",Vector) = (0,0,1,0)
-		_Limit("Distance Limit", Float) = 5
+		_Limit("Bulge Threshold", Float) = 5
 		_Amount("Extrusion Amount", Float) = 3
 	} 
 
@@ -20,7 +21,8 @@ Shader "vertexColorCylinderDisplace1" {
 
 			float _Amount;
 			float _Limit;
-			float _LightLimit;
+			float _CastLength;
+			//float _LightLimit;
 			float3 _Pos;
 			float3 _Dir;
 			//float3 _LightPos;
@@ -74,32 +76,29 @@ Shader "vertexColorCylinderDisplace1" {
 
 			v2f capsuleBubbler(float4 v, float3 nrm){
 				v2f o; 
-				float3 lineJump = _Dir * 100;
-				// TODO: should take direction the camera is facing, now bulge comes at exact point position, not towards dir..
-				//float distMulti = 
-				//	//(_Limit-min(_Limit,distance(v.xyz, _Pos)))/_Limit;
-				//	_Limit - min(
-				//		_Limit,
-				//		capsuleLineDist(
-				//			v.xyz,
-				//			_Pos - lineJump,
-				//			_Pos + lineJump,
-				//			0.0))
-				//	/ _Limit;
-				//float3 dir = normalize(v.xyz-_Pos);
-				// ....
-				//v.xyz += dir * (distMulti*_Amount);
-				//v.xz += dir * (distMulti*_Amount);
+				float3 lineJump = _Dir * _CastLength;
+
+				float3 pos = _Pos.xyz;
+
+				float4 vWorld = mul(_Object2World, v);
+
 				float cdist = capsuleLineDist(
-								v.xyz,
-								_Pos - lineJump,
-								_Pos + lineJump,
+								vWorld.xyz,
+								pos - lineJump,
+								pos + lineJump,
 								0.0);
+
 				float bulgedFctr = trigStep(cdist / _Limit);
 				float3 dir = normalize(nrm);
 				float bulgedFctr2 = bulgedFctr * _Amount;
-				v.xyz += dir * bulgedFctr2;
+				
+				float3 something = 
+					mul(_World2Object,
+						mul(_Object2World, v.xyz)
+						+ dir * bulgedFctr2);
+				v.xyz = something;
 				o.pos = mul(UNITY_MATRIX_MVP, v);
+
 				return o;
 			}
 
