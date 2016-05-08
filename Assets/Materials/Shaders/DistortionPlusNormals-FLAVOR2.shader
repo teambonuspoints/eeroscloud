@@ -23,10 +23,10 @@ Shader "DistortionPlusNormals-FLAVOR2" {
                     float4 pos = mul(UNITY_MATRIX_MV, v);
                    
                     float distanceSquared = pos.x * pos.x + pos.z * pos.z;
-                    pos.y += 5*sin(distanceSquared*_SinTime.x/200);
+                    pos.y += 5*sin(distanceSquared*_SinTime.x/100);
                     float y = pos.y;
                     float x = pos.x;
-                    float om = sin(distanceSquared*_SinTime.x/1000) * _SinTime.x;
+                    float om = sin(distanceSquared*_SinTime.x/500) * _SinTime.x;
                     pos.y = x*sin(om)+y*cos(om);
                     pos.x = x*cos(om)-y*sin(om);
                    
@@ -48,7 +48,7 @@ Shader "DistortionPlusNormals-FLAVOR2" {
 	                // range. To display it as color, bring the range into 0..1
 	                // and put into red, green, blue components
 
-	                c.rgb = i.worldNormal*0.5+0.5;
+	                c.rgb = i.worldNormal*0.4-0.2;
 	                return c;
 
                 }
