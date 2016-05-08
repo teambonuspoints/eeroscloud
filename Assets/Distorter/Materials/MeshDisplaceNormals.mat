@@ -185,7 +185,7 @@ Material:
       data:
         first:
           name: _Pos
-        second: {r: -12.509058, g: -7.81338, b: -7.2908435, a: 1}
+        second: {r: -10.667133, g: 0.71413994, b: 4.17157, a: 1}
       data:
         first:
           name: _TintColor
