@@ -143,6 +143,14 @@ Material:
         first:
           name: _CastLength
         second: 10000
+      data:
+        first:
+          name: _Switcheroo
+        second: 1
+      data:
+        first:
+          name: _CarpetThreshold
+        second: 1.36
     m_Colors:
       data:
         first:
