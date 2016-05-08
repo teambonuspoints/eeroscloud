@@ -6,9 +6,12 @@ public class FlyMovement : MonoBehaviour {
 
 	public float thrust = 10.0f;
 
-	private float zmax = 130;
-	private float xmax = 120;
-	private float ymax = 40;
+	private float zmin = -90.0f;
+	private float zmax = 130.0f;
+	private float xmin = -70.0f;
+	private float xmax = 130.0f;
+	private float ymin = -50.0f;
+	private float ymax = 50.0f;
 
 	// Update is called once per frame
 	void Update () {
@@ -20,32 +23,32 @@ public class FlyMovement : MonoBehaviour {
 
 		if (cPos.z > zmax) {
 			Vector3 newPos = Camera.main.transform.position;
-			newPos.z = -1.0f * zmax;
+			newPos.z = zmin;
 			transform.position = newPos;
 		} 
 		if (cPos.z < -1 * zmax) {
 			Vector3 newPos = Camera.main.transform.position;
-			newPos.z = 1.0f * zmax;
+			newPos.z =  zmax;
 			transform.position = newPos;
 		}
 		if (cPos.x > xmax) {
 			Vector3 newPos = Camera.main.transform.position;
-			newPos.x = -1.0f * xmax;
+			newPos.x = xmin;
 			transform.position = newPos;
 		}
 		if (cPos.x < -1 * xmax) {
 			Vector3 newPos = Camera.main.transform.position;
-			newPos.x = 1.0f * xmax;
+			newPos.x = xmax;
 			transform.position = newPos;
 		}
 		if (cPos.y > ymax) {
 			Vector3 newPos = Camera.main.transform.position;
-			newPos.y = -1.0f * ymax;
+			newPos.y =  ymin;
 			transform.position = newPos;
 		}
 		if (cPos.y < -1 * ymax) {
 			Vector3 newPos = Camera.main.transform.position;
-			newPos.y = 1.0f * ymax;
+			newPos.y = ymax;
 			transform.position = newPos;
 		}
 
