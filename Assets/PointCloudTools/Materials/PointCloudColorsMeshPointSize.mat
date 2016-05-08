@@ -33,12 +33,12 @@ Material:
         second: 1
       data:
         first:
-          name: _Alpha
-        second: 0.60714287
-      data:
-        first:
           name: _PointSize
         second: 100
+      data:
+        first:
+          name: _Alpha
+        second: 0.60714287
     m_Colors:
       data:
         first:
