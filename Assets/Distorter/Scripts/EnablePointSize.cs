@@ -38,7 +38,7 @@ public class EnablePointSize : MonoBehaviour
 	{
 		if (mIsOpenGL) {
 			glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
-			print("yo, enabled");
+			//print("yo, enabled");
 		}
 		glEnable(GL_POINT_SMOOTH);
 	}
