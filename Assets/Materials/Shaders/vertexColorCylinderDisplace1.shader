@@ -11,7 +11,7 @@ Shader "vertexColorCylinderDisplace1" {
 		//_Switcheroo("_Switcheroo", Bool) = false
 		//fuck it
 		_Switcheroo("Switcheroo", Int) = 1
-		_CarpetThreshold("Carpet Threshold", Float) = 0.1 
+		_CarpetThreshold("Carpet Threshold", Float) = 1
 	} 
 
 	SubShader {
