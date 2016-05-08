@@ -93,18 +93,6 @@ Material:
         second: 0.5
       data:
         first:
-          name: _LightLimit
-        second: 5
-      data:
-        first:
-          name: _Limit
-        second: 5
-      data:
-        first:
-          name: _Amount
-        second: 2
-      data:
-        first:
           name: _Parallax
         second: 0.02
       data:
@@ -139,6 +127,18 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _LightLimit
+        second: 5
+      data:
+        first:
+          name: _Limit
+        second: 5
+      data:
+        first:
+          name: _Amount
+        second: 2
     m_Colors:
       data:
         first:
@@ -155,8 +155,8 @@ Material:
       data:
         first:
           name: _Pos
-        second: {r: 3.309127, g: -1.6400971, b: 20.112593, a: 1}
+        second: {r: 0, g: -7.46, b: -13.76, a: 1}
       data:
         first:
           name: _Dir
-        second: {r: 0.00000032782555, g: 1, b: 0.00000023841858, a: 1}
+        second: {r: 0, g: 0, b: 1, a: 1}

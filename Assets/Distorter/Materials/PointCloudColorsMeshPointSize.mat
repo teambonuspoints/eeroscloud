@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PointCloudColorsMeshPointSize
-  m_Shader: {fileID: 4800000, guid: 07d3563b34f78474389851345e3499e6, type: 3}
+  m_Shader: {fileID: 4800000, guid: 15dbc33514529403cb6ec5ef698caa27, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2000
@@ -33,12 +33,24 @@ Material:
         second: 1
       data:
         first:
+          name: _Limit
+        second: 5
+      data:
+        first:
+          name: _Amount
+        second: 3
+      data:
+        first:
           name: _PointSize
         second: 100
       data:
         first:
           name: _Alpha
         second: 0.60714287
+      data:
+        first:
+          name: point_size
+        second: 5
     m_Colors:
       data:
         first:
@@ -50,9 +62,13 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _Emission
-        second: {r: 0, g: 0, b: 0, a: 0}
+          name: _Pos
+        second: {r: 0, g: -7.46, b: -13.76, a: 1}
       data:
         first:
           name: _TintColor
         second: {r: 1, g: 1, b: 1, a: 0.5019608}
+      data:
+        first:
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 0}
