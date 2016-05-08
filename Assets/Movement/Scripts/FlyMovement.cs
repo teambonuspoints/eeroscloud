@@ -6,7 +6,7 @@ public class FlyMovement : MonoBehaviour {
 
 	public float thrust = 10.0f;
 
-	private float zmax = 10;
+	private float zmax = 130;
 	private float xmax = 120;
 	private float ymax = 40;
 
