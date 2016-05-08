@@ -37,11 +37,11 @@ Material:
       data:
         first:
           name: _Limit
-        second: 5
+        second: 40
       data:
         first:
           name: _Amount
-        second: 2
+        second: 40
       data:
         first:
           name: _Invert
@@ -58,4 +58,4 @@ Material:
       data:
         first:
           name: _Pos
-        second: {r: 11.224308, g: -5.4767957, b: -0.9506464, a: 1}
+        second: {r: 0, g: -7.46, b: -13.76, a: 1}
